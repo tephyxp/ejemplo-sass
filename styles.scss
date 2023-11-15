@@ -1,0 +1,98 @@
+//Variables y partials
+
+@import 'variables';
+
+body {
+    background: $primary-color
+}
+
+@import 'navbar';
+
+.box {
+
+    h2,
+    p {
+        color: $secondary-color;
+    }
+}
+
+//Uso de mixins
+
+@mixin customized-box($bg :$tertiary-color) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    background-color: $bg;
+    border-color: 4px solid $letters-color;
+    box-shadow: 0px 0px 0px 2px black;
+    margin: 10px;
+}
+
+.box {
+    @include customized-box();
+
+}
+
+.next-box {
+    @include customized-box($bg: $extra-color);
+
+    h2,
+    p {
+        color: $letters-color;
+    }
+}
+
+//Operadores
+
+.next-box {
+    width: 400px + 100px;
+}
+
+//herencias
+
+.first-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-color: 4px solid $letters-color;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.second-button{
+    @extend .first-button;
+
+    background-color: $primary-lighter;
+    color: black;
+
+}
+
+// DIRECTIVAS DE CONTROL
+
+/* IF */
+$variable: true;
+
+@if $variable == true {
+    .directive-one {
+        background-color: $primary-lighter;
+    }
+} @else {
+    .directive-one {
+        background-color: $secondary-color;
+    }
+}
+
+// /* FOR */
+// @for $i from 1 through 3 {
+//     .for-example:nth-child(#{$i}) {
+//         font-size: 10px * $i;
+//     }
+// }
+
+// /* EACH */
+// $colors: red, blue, green;
+
+// @each $color in $colors {
+//     .each-example-#{$color} {
+//         background-color: $color;
+//     }
+// }
